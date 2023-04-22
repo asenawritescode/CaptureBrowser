@@ -1,3 +1,12 @@
+
+
+const capture_mouse = (() => {
+
+/*
+- This fuction is used to capture mouse clicks and send them to an api
+- This function is called in the index.html file
+*/
+
 document.onmousemove = function (e) {
     // parse to json 
     let data1 = {
@@ -11,3 +20,5 @@ document.onmousemove = function (e) {
     console.log(data1);
     xhr.send(JSON.stringify(data1));
 };
+
+})();
