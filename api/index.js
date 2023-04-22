@@ -1,19 +1,18 @@
-// express api to recieve data being posted from the client webbreowser
-const bodyparser = require('body-parser');
-const { json } = require('body-parser');
+//Import the dependencies
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+//use dotenv to read .env vars into Node
+// require('dotenv').config();
 
-// create express app
+//Create an instance of the Express app
 const app = express();
 
+//Enable CORS by using the cors middleware
+app.use(cors());
 
-// parse requests of content-type - application/json
-app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*'); // replace * with the domain that's allowed to access the resource
-    res.header('Access-Control-Allow-Methods', 'POST'); // add the HTTP methods that are allowed
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization'); // add the allowed request headers
-    next();
-  });
+//Enable JSON parsing by using the body-parser middleware
+app.use(bodyParser.json());
 
 // define a simple route
 app.get('/', (req, res) => {
@@ -21,7 +20,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/data', (req, res) => {
-    console.log(json.toString(req.body));
+    console.log(req.body);
     res.json({ "message": "Data recieved" });
 });
 
